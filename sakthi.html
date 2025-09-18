@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project - Main Web Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; }
+        .container { width: 400px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 0 10px #ccc; padding: 30px 20px;}
+        h2 { text-align: center; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; margin-bottom: 20px;}
+        .item { background: #eaf0fa; border: 2px solid #6699cc; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .item:hover { background: #d2e0f7; }
+        .full-width { grid-column: span 2; }
+        .modal { display: none; position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.3); align-items: center; justify-content: center; z-index: 10;}
+        .modal-content { background: #fff; padding: 28px 24px; border-radius: 12px; max-width: 370px; width: 90%; }
+        .close-btn { float: right; cursor: pointer; color: #888; font-size: 20px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>One of the Web Page</h2>
+        <div class="grid" id="icons">
+            <div class="item" onclick="showModal('schoolCollege')">🏫<br>School/College</div>
+            <div class="item" onclick="showModal('office')">💼<br>Office</div>
+            <div class="item" onclick="showModal('complaint')">⚠️<br>Complaind</div>
+            <div class="item" onclick="showModal('travels')">🚗<br>Travels</div>
+            <div class="item full-width" onclick="showModal('feedback')">⭐<br>Feedback</div>
+        </div>
+    </div>
+    <!-- Modal code -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    <script>
+        function showModal(type) {
+            const modal = document.getElementById('modal');
+            const body = document.getElementById('modalBody');
+            let content = "";
+            if (type === "schoolCollege") {
+                content = `
+                    <b>School/College Certificate Links</b><br>
+                    <ul>
+                        <li>Birth Certificate - <a href="https://www.india.gov.in/application-birth-certificate">Apply online</a></li>
+                        <li>Transfer Certificate - <a href="https://tnschools.gov.in/transfer-certificate">Get TC</a></li>
+                        <li>10th Marksheet - <a href="https://dge.tn.gov.in/results.html">Download</a></li>
+                        <li>12th Marksheet - <a href="https://dge.tn.gov.in/results.html">Download</a></li>
+                        <li>Degree Certificate - <a href="https://aucoe.annauniv.edu/">Apply at AU</a></li>
+                    </ul>
+                `;
+            } else if (type === "office") {
+                content = `
+                    <b>Jobs & Application Links</b><br>
+                    <ul>
+                        <li>Resume, Marksheet, ID proof</li>
+                        <li>Apply for government jobs: <a href="https://www.tnpsc.gov.in/">TNPSC</a></li>
+                        <li>IT jobs: <a href="https://www.naukri.com/">Naukri.com</a></li>
+                        <li>Private company jobs: <a href="https://www.linkedin.com/jobs/">LinkedIn</a></li>
+                    </ul>
+                `;
+            } else if (type === "complaint") {
+                content = `
+                    <b>Complaint Types & Links</b><br>
+                    <ul>
+                        <li>Police complaint - <a href="https://eservices.tnpolice.gov.in/CCTNSNICSDC/ComplaintRegistrationPage">TN Police Online</a></li>
+                        <li>Consumer complaint - <a href="https://consumerhelpline.gov.in/">Consumer Helpline</a></li>
+                        <li>Cybercrime - <a href="https://cybercrime.gov.in/">National Cyber Crime Portal</a></li>
+                    </ul>
+                `;
+            } else if (type === "travels") {
+                content = `
+                    <b>Travels & Booking Links</b><br>
+                    <ul>
+                        <li>Car/Bike Booking - <a href="https://www.zoomcar.com/">Zoomcar</a></li>
+                        <li>Bus Ticket - <a href="https://www.redbus.in/">Redbus</a></li>
+                        <li>Train Ticket - <a href="https://www.irctc.co.in/">IRCTC</a></li>
+                        <li>Flight Ticket - <a href="https://www.makemytrip.com/">MakeMyTrip</a></li>
+                    </ul>
+                `;
+            } else if (type === "feedback") {
+                content = `
+                    <b>Feedback</b><br>
+                    <form>
+                        <textarea rows="4" placeholder="How was your experience?"></textarea><br>
+                        <label>Rate us: 
+                            <select><option>5 - Excellent</option><option>4 - Good</option><option>3 - Average</option><option>2 - Poor</option><option>1 - Very Poor</option></select>
+                        </label><br><br>
+                        <button type="button" onclick="alert('Thanks for your feedback!')">Submit</button>
+                    </form>
+                `;
+            }
+            body.innerHTML = content;
+            modal.style.display = "flex";
+        }
+        function closeModal() { document.getElementById('modal').style.display = "none"; }
+    </script>
+</body>
+</html>
